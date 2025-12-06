@@ -1,6 +1,8 @@
 // HOME SCREEN
 // =====================
 .Screen.home-screen {
+  justify-content: center;
+  align-items: center;
 
   .title {
     margin-top: 24px;
@@ -9,6 +11,32 @@
 
   .subtitle {
     text-align: center;
+  }
+
+  .levels-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .level-button {
+    min-width: 200px;
+    padding: 12px 24px;
+    background-color: $casino-gold;
+    border: 2px solid $rich-maroon;
+    border-radius: 6px;
+    color: $black;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      background-color: $champagne;
+      border-color: $vegas-red;
+    }
   }
 
   .game-display {
@@ -37,5 +65,213 @@
       justify-content: flex-start;
     }
   }
+}
 
+// LEVEL SHOW SCREEN
+// =====================
+.Screen.level-show-screen {
+  padding: 20px;
+  overflow: hidden;
+
+  .level-show-header {
+    margin-bottom: 20px;
+    text-align: center;
+
+    .title {
+      margin: 0;
+    }
+  }
+
+  .level-show-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: calc(100vh - 120px);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .level-character-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 0;
+    position: relative;
+
+    .level-character-video {
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: translateX(-25%);
+      background-color: $black;
+    }
+  }
+
+  .level-chat-wrapper {
+    width: 500px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// LEVEL CHAT DIALOGUE
+// =====================
+.level-chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid $rich-maroon;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  .level-chat-header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid $rich-maroon;
+
+    h2 {
+      margin: 0 0 5px 0;
+      color: $vegas-red;
+    }
+
+    .character-role {
+      margin: 0;
+      color: $black;
+      font-style: italic;
+      font-size: 14px;
+    }
+  }
+
+  .level-chat-history {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    min-height: 200px;
+
+    .chat-welcome-message {
+      padding: 15px;
+      text-align: center;
+      color: $black;
+      font-style: italic;
+    }
+
+    .chat-message {
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      word-wrap: break-word;
+
+      &.player-message {
+        text-align: right;
+        background-color: $casino-gold;
+        margin-left: 20%;
+        color: $black;
+      }
+
+      &.npc-message {
+        text-align: left;
+        background-color: rgba(200, 200, 200, 0.3);
+        margin-right: 20%;
+        color: $black;
+      }
+
+      strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 12px;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .level-objectives {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(248, 248, 248, 0.8);
+    border: 1px solid $rich-maroon;
+    border-radius: 4px;
+
+    strong {
+      display: block;
+      margin-bottom: 8px;
+      color: $vegas-red;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 4px 0;
+        color: $black;
+
+        &.completed {
+          color: green;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .level-chat-input-container {
+    display: flex;
+    gap: 10px;
+
+    .level-chat-input {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid $rich-maroon;
+      border-radius: 4px;
+      background-color: white;
+      color: $black;
+      font-size: 14px;
+
+      &:disabled {
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+        border-color: #aaa;
+        color: #777;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $vegas-red;
+      }
+    }
+
+    .level-chat-send-button {
+      padding: 10px 20px;
+      background-color: $casino-gold;
+      border: 2px solid $rich-maroon;
+      border-radius: 4px;
+      color: $black;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background-color: $champagne;
+        border-color: $vegas-red;
+      }
+
+      &:disabled {
+        background-color: #e0e0e0;
+        border-color: #aaa;
+        color: #777;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
