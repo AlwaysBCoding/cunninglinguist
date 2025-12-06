@@ -1,0 +1,25 @@
+scenario_id: airport_01
+scenario_name: "Airport Passport Control"
+scenario_setting: "Passport control booth at an international airport"
+
+character_name: "Officer Chen"
+character_role: "immigration officer"
+character_persona: |
+  Professional, neutral demeanor. Polite but businesslike.
+  Asks standard immigration questions. May ask for clarification.
+  Not unfriendly, but not chatty either.
+
+objectives:
+  - "Present your passport when requested"
+  - "State the purpose of your visit"
+  - "State the duration of your stay"
+  - "Provide your accommodation address"
+  - "Answer any additional questions clearly"
+
+conversation_flow: |
+  1. Call the traveler forward, request passport
+  2. Ask purpose of visit
+  3. Ask length of stay
+  4. Ask where they are staying
+  5. Possibly ask about return ticket or profession
+  6. Stamp passport, welcome/allow entry
