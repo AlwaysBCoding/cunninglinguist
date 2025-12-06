@@ -1,25 +1,130 @@
+# scenarios/airport.yaml
+
 scenario_id: airport_01
 scenario_name: "Airport Passport Control"
-scenario_setting: "Passport control booth at an international airport"
+scenario_setting: |
+  International arrivals hall at a major airport.
+  You've just landed and collected your luggage.
+  You're now in the queue for passport control.
+  The immigration officer is in a booth, processing travelers one by one.
+  There are signs indicating which lines to join (citizens vs. visitors).
 
 character_name: "Officer Chen"
 character_role: "immigration officer"
 character_persona: |
-  Professional, neutral demeanor. Polite but businesslike.
-  Asks standard immigration questions. May ask for clarification.
-  Not unfriendly, but not chatty either.
+  Professional, efficient immigration officer in their 30s.
+  Neutral, businesslike demeanor — not unfriendly, but not chatty.
+  Asks standard questions clearly and waits for answers.
+  May ask follow-up questions if answers are vague or incomplete.
+  Looks at documents carefully.
+  Occasionally makes brief eye contact.
+  Will clarify if something doesn't make sense.
+  Not intimidating, but takes the job seriously.
+  May offer a brief "Welcome to [country]" at the end.
 
 objectives:
-  - "Present your passport when requested"
-  - "State the purpose of your visit"
-  - "State the duration of your stay"
-  - "Provide your accommodation address"
-  - "Answer any additional questions clearly"
+  - description: "Approach the booth when called"
+    required: true
+    hint: "Wait for the officer to call you forward."
+
+  - description: "Present your passport when requested"
+    required: true
+    hint: "Have your documents ready."
+
+  - description: "State the purpose of your visit"
+    required: true
+    hint: "Why are you visiting this country?"
+
+  - description: "State the duration of your stay"
+    required: true
+    hint: "How long will you be here?"
+
+  - description: "Provide your accommodation address or hotel name"
+    required: true
+    hint: "Where will you be staying?"
+
+  - description: "Answer at least one additional question clearly"
+    required: true
+    hint: "The officer may want more details."
+
+  - description: "Receive entry approval and conclude the interaction"
+    required: true
+    hint: "Wait for the officer to stamp your passport."
 
 conversation_flow: |
-  1. Call the traveler forward, request passport
-  2. Ask purpose of visit
-  3. Ask length of stay
-  4. Ask where they are staying
-  5. Possibly ask about return ticket or profession
-  6. Stamp passport, welcome/allow entry
+  1. CALL FORWARD: Beckon or call the next traveler
+  2. DOCUMENT REQUEST: Ask for passport (and visa if applicable)
+  3. INITIAL REVIEW: Look at passport, may ask to confirm name or nationality
+  4. PURPOSE: Ask purpose of visit (tourism, business, study, visiting family)
+  5. DURATION: Ask how long they plan to stay
+  6. ACCOMMODATION: Ask where they are staying
+  7. ADDITIONAL QUESTIONS (optional, pick 1-2):
+     - Return ticket: "Do you have a return ticket?"
+     - Profession: "What do you do for work?"
+     - Visited before: "Have you been to [country] before?"
+     - Items to declare: "Are you carrying more than [amount] in cash or goods to declare?"
+     - Travel companions: "Are you traveling alone?"
+     - Specific city: "Where exactly are you going?"
+  8. APPROVAL: Stamp passport, return documents
+  9. CLOSING: Brief welcome or "Next, please"
+
+opening_line: |
+  *looks up and gestures*
+  Next. Step forward, please. Passport.
+
+cultural_notes: |
+  - Immigration interactions are intentionally brief and formal worldwide
+  - Eye contact norms vary — some officers maintain it, others look at documents
+  - Humor is generally not appropriate in this setting
+  - Answers should be clear and concise — rambling raises suspicion
+  - In some countries, officers are very stern; in others, more relaxed
+  - Having documents ready shows preparedness
+  - "Business or pleasure?" is a universal question format
+  - Some countries ask about specific items (food, plants, large cash amounts)
+
+# Traveler profile presets (pick one per session)
+traveler_presets:
+  - id: tourist
+    description: "Tourist on vacation"
+    purpose: "Tourism / Vacation"
+    duration: "10 days"
+    accommodation: "Hotel — Grand Plaza Hotel, downtown"
+    return_ticket: "Yes, flying back on the 15th"
+    profession: "Marketing manager"
+    additional_notes: "First time visiting"
+
+  - id: business
+    description: "Business traveler"
+    purpose: "Business — attending a conference"
+    duration: "4 days"
+    accommodation: "Hotel — Marriott Convention Center"
+    return_ticket: "Yes, departing Thursday evening"
+    profession: "Software engineer"
+    additional_notes: "Has invitation letter from conference"
+
+  - id: family_visit
+    description: "Visiting family"
+    purpose: "Visiting family — my sister lives here"
+    duration: "3 weeks"
+    accommodation: "Staying with sister — 45 Oak Street, Riverside"
+    return_ticket: "Yes, open return within 30 days"
+    profession: "Retired teacher"
+    additional_notes: "Has visited twice before"
+
+  - id: student
+    description: "Student starting studies"
+    purpose: "Study — starting university program"
+    duration: "1 year initially"
+    accommodation: "University dormitory — registration tomorrow"
+    return_ticket: "No — one-way ticket"
+    profession: "Student"
+    additional_notes: "Has student visa and acceptance letter"
+
+  - id: transit
+    description: "Transit passenger"
+    purpose: "Transit — connecting flight to final destination"
+    duration: "6-hour layover"
+    accommodation: "Staying in airport / airport hotel"
+    return_ticket: "Continuing to [destination] tonight"
+    profession: "Architect"
+    additional_notes: "May need transit visa depending on country"
