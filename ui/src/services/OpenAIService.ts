@@ -37,6 +37,45 @@ export const fetchAIResponse = async (
   }
 }
 
+/**
+ * Generic AI response function for Level-based conversations.
+ * Works with Level chat history structure and doesn't depend on NPC model.
+ * 
+ * @param chatHistory - The chat history from level_state.chat_history
+ * @param systemPrompt - The full system prompt for the character (rendered from template)
+ * @returns The AI-generated response text
+ */
+export const fetchLevelAIResponse = async (
+  chatHistory: { role: "player" | "npc", text: string }[],
+  systemPrompt: string
+): Promise<string> => {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4o",
+        messages: [
+          { role: 'system', content: systemPrompt },
+          ...chatHistory.map((entry) => ({
+            role: entry.role === "player" ? "user" : "assistant",
+            content: entry.text,
+          })),
+        ],
+      }),
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "(No response)";
+  } catch (error) {
+    console.error("Error fetching Level AI response:", error);
+    return "(Error retrieving response)";
+  }
+}
+
 export const fetchCryptexAnalysis = async (
   sentence: string,
   targetLanguage: string
@@ -236,4 +275,78 @@ export const evaluateObjectiveCompletion = async (
     console.error("Error evaluation objective completion", error);
     return false;
   }
+}
+
+/**
+ * Evaluates all objectives for a Level and returns IDs of newly completed objectives.
+ * Only evaluates objectives that are not already in completed_objectives.
+ * 
+ * @param level - The Level object containing objectives and level state
+ * @param chatHistory - The current conversation history
+ * @param systemPrompt - The system prompt for context (optional, for better evaluation)
+ * @returns Promise that resolves to an array of objective IDs that were newly completed
+ */
+export const evaluateLevelObjectives = async (
+  level: { objectives: Array<{ id: string; description: string }>, level_state: { completed_objectives: string[] } },
+  chatHistory: { role: "player" | "npc", text: string }[],
+  systemPrompt?: string
+): Promise<string[]> => {
+  // Get objectives that haven't been completed yet
+  const incompleteObjectives = level.objectives.filter(
+    obj => !level.level_state.completed_objectives.includes(obj.id)
+  );
+
+  if (incompleteObjectives.length === 0) {
+    return [];
+  }
+
+  const newlyCompleted: string[] = [];
+
+  // Evaluate each incomplete objective
+  for (const objective of incompleteObjectives) {
+    try {
+      const systemMessage = systemPrompt 
+        ? `You are an evaluator. Based on the conversation below and the context provided, determine if the player has achieved the following objective: "${objective.description}". Respond with ONLY "yes" or "no".\n\nContext:\n${systemPrompt}`
+        : `You are an evaluator. Based on the conversation below, determine if the player has achieved the following objective: "${objective.description}". Respond with ONLY "yes" or "no".`;
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o",
+          messages: [
+            { role: "system", content: systemMessage },
+            ...chatHistory.map((entry) => ({
+              role: entry.role === "player" ? "user" : "assistant",
+              content: entry.text,
+            })),
+          ],
+          max_tokens: 5,
+        }),
+      });
+
+      const data = await response.json();
+      const isCompleted = data.choices?.[0]?.message?.content.trim().toLowerCase() === "yes";
+      
+      if (isCompleted) {
+        newlyCompleted.push(objective.id);
+        console.log(`✅ Objective completed: "${objective.description}" (ID: ${objective.id})`);
+      } else {
+        console.log(`❌ Objective not completed: "${objective.description}" (ID: ${objective.id})`);
+      }
+    } catch (error) {
+      console.error(`Error evaluating objective "${objective.description}":`, error);
+    }
+  }
+
+  if (newlyCompleted.length > 0) {
+    console.log(`🎯 Newly completed objectives: ${newlyCompleted.join(", ")}`);
+  } else {
+    console.log("📋 No new objectives completed in this response.");
+  }
+
+  return newlyCompleted;
 }

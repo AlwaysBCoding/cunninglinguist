@@ -10,8 +10,8 @@ export const LEVELS: Level[] = [
     scenario_setting: 'A busy restaurant during lunch rush. You need to order food and interact with the waitress.',
     character_persona: 'Friendly and efficient waitress who speaks Spanish as her native language. She is patient but busy, and appreciates when customers are polite and clear with their orders.',
     native_language: {
-      code: 'es',
-      display: 'Spanish'
+      code: 'en',
+      display: 'English'
     },
     target_language: {
       code: 'en',

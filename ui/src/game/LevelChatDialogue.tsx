@@ -4,6 +4,7 @@ import { Level } from '../types/Level';
 interface LevelChatDialogueProps {
   level: Level;
   chatHistory: { role: "player" | "npc", text: string }[];
+  completedObjectives?: string[];
   onMessageSend: (message: string) => void;
   isLoading?: boolean;
   isTyping?: boolean;
@@ -13,6 +14,7 @@ interface LevelChatDialogueProps {
 export const LevelChatDialogue: React.FC<LevelChatDialogueProps> = ({
   level,
   chatHistory,
+  completedObjectives,
   onMessageSend,
   isLoading = false,
   isTyping = false,
@@ -77,7 +79,7 @@ export const LevelChatDialogue: React.FC<LevelChatDialogueProps> = ({
           <strong>Objectives:</strong>
           <ul>
             {level.objectives.map((objective) => {
-              const isCompleted = level.level_state.completed_objectives.includes(objective.id);
+              const isCompleted = (completedObjectives || level.level_state.completed_objectives).includes(objective.id);
               return (
                 <li key={objective.id} className={isCompleted ? "completed" : ""}>
                   {isCompleted ? "✔" : "○"} {objective.display_text}
