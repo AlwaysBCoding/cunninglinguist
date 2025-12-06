@@ -1,0 +1,26 @@
+scenario_id: clinic_01
+scenario_name: "At the Doctor's Clinic"
+scenario_setting: "A general practitioner's office during an appointment"
+
+character_name: "Dr. Fischer"
+character_role: "doctor"
+character_persona: |
+  Calm, professional doctor in their 40s.
+  Asks clear diagnostic questions. Explains things simply.
+  Shows appropriate concern for patient wellbeing.
+
+objectives:
+  - "Explain your symptoms"
+  - "Answer the doctor's diagnostic questions"
+  - "Ask about the diagnosis"
+  - "Understand the treatment recommendation"
+  - "Ask any follow-up questions about medication or next steps"
+
+conversation_flow: |
+  1. Greet patient, ask what brings them in
+  2. Ask follow-up questions about symptoms (duration, severity, etc.)
+  3. Mention brief examination (describe what you're checking)
+  4. Provide diagnosis or assessment
+  5. Recommend treatment/medication
+  6. Ask if patient has questions
+  7. Schedule follow-up if needed, say goodbye
