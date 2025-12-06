@@ -1,0 +1,271 @@
+# language_interference.yaml
+# Common errors and interference patterns by native language → target language
+
+interference_patterns:
+
+  # Arabic speakers learning other languages
+  ar:
+    en:
+      grammar:
+        - "Omitting articles (a, an, the) — Arabic has no indefinite article"
+        - "Verb-subject agreement errors"
+        - "Confusion with 'is/are' — Arabic doesn't use 'to be' in present tense"
+        - "Adjective placement after noun (Arabic pattern)"
+      pronunciation:
+        - "Difficulty with /p/ vs /b/ — Arabic has no /p/"
+        - "Difficulty with /v/ sound"
+        - "Short vowel distinctions (bit/bet/bat)"
+      false_cognates: []
+      word_order:
+        - "VSO tendency (verb-subject-object) vs English SVO"
+      cultural_pragmatics:
+        - "More elaborate greetings expected"
+        - "Direct refusals may seem rude — soften responses"
+        
+    es:
+      grammar:
+        - "Gender agreement errors — different gender system"
+        - "Omitting subject pronouns less than Spanish allows"
+      pronunciation:
+        - "Difficulty with /p/ sound"
+        - "Spanish /r/ vs Arabic /r/"
+      false_cognates: []
+      word_order:
+        - "Adjective placement differences"
+      cultural_pragmatics:
+        - "Formal/informal (tú/usted) selection"
+
+  # English speakers learning other languages  
+  en:
+    es:
+      grammar:
+        - "Gender agreement errors (el/la, -o/-a endings)"
+        - "Ser vs estar confusion"
+        - "Subjunctive mood avoidance or errors"
+        - "Position of object pronouns"
+        - "Overuse of subject pronouns (Spanish often drops them)"
+      pronunciation:
+        - "Anglicized vowels — Spanish has pure vowels"
+        - "Difficulty rolling /rr/"
+        - "Adding schwa sounds where not needed"
+      false_cognates:
+        - "embarazada (pregnant, not embarrassed)"
+        - "actualmente (currently, not actually)"
+        - "sensible (sensitive, not sensible)"
+        - "éxito (success, not exit)"
+      word_order:
+        - "Adjective before noun (English pattern) vs after noun (Spanish)"
+      cultural_pragmatics:
+        - "Tú vs usted selection"
+        - "More physical greetings (cheek kiss) in some regions"
+        
+    fr:
+      grammar:
+        - "Gender agreement errors (le/la)"
+        - "Passé composé vs imparfait selection"
+        - "Subjunctive avoidance"
+        - "Adjective placement (most go after noun)"
+        - "Partitive articles (du, de la, des)"
+      pronunciation:
+        - "Silent letters confusion"
+        - "Nasal vowels"
+        - "French /r/ (uvular)"
+        - "Liaison errors"
+      false_cognates:
+        - "attendre (to wait, not attend)"
+        - "blessé (injured, not blessed)"
+        - "coin (corner, not coin)"
+        - "journée (day, not journey)"
+      word_order:
+        - "Adjective placement"
+        - "Negation structure (ne...pas)"
+      cultural_pragmatics:
+        - "Tu vs vous selection"
+        - "Greeting with 'Bonjour' is mandatory"
+        
+    de:
+      grammar:
+        - "Case system errors (nominative, accusative, dative, genitive)"
+        - "Gender assignment (der/die/das)"
+        - "Verb position in subordinate clauses"
+        - "Separable prefix verbs"
+        - "Adjective declension"
+      pronunciation:
+        - "Umlauts (ä, ö, ü)"
+        - "ch sounds (ich-laut vs ach-laut)"
+        - "Final consonant devoicing"
+      false_cognates:
+        - "Gift (poison, not gift)"
+        - "bekommen (to receive, not become)"
+        - "aktuell (current, not actual)"
+        - "Rat (advice, not rat)"
+      word_order:
+        - "Verb-second rule in main clauses"
+        - "Verb-final in subordinate clauses"
+        - "Time-manner-place order"
+      cultural_pragmatics:
+        - "Du vs Sie selection"
+        - "Direct communication style"
+        
+    ja:
+      grammar:
+        - "Particle usage (wa, ga, wo, ni, de, etc.)"
+        - "Verb conjugation patterns"
+        - "Omitting subjects (Japanese is pro-drop)"
+        - "Counter words for objects"
+        - "Relative clause structure (before noun)"
+      pronunciation:
+        - "Pitch accent"
+        - "Long vs short vowels"
+        - "Consonant clusters (English has more)"
+      false_cognates:
+        - "Wasei-eigo (Japanese-made English) may not mean what expected"
+      word_order:
+        - "SOV structure vs English SVO"
+        - "Verb always at end"
+      cultural_pragmatics:
+        - "Politeness levels (casual, polite, honorific)"
+        - "Indirect communication style"
+        - "Avoiding direct 'no'"
+        
+    zh:
+      grammar:
+        - "No verb conjugation in Chinese — tense via context/particles"
+        - "Measure words/classifiers"
+        - "Topic-prominent structure"
+        - "Aspect markers (了, 过, 着)"
+      pronunciation:
+        - "Four tones (5 in some contexts)"
+        - "Aspirated vs unaspirated consonants"
+      false_cognates: []
+      word_order:
+        - "Time expressions at start"
+        - "Modifier before modified"
+      cultural_pragmatics:
+        - "Indirect refusals"
+        - "Politeness through circumlocution"
+
+  # Spanish speakers learning other languages
+  es:
+    en:
+      grammar:
+        - "Omitting subject pronouns (Spanish allows, English doesn't)"
+        - "Adjective placement before noun"
+        - "Double negatives (valid in Spanish, not English)"
+        - "Present tense overuse for future"
+        - "Ser/estar distinction doesn't exist — 'to be' errors"
+      pronunciation:
+        - "Adding /e/ before sp- clusters (espeak for speak)"
+        - "Vowel reduction difficulty (English has schwa)"
+        - "th sounds (/θ/ and /ð/)"
+        - "Distinguishing /b/ and /v/"
+      false_cognates:
+        - "actually (en realidad, not actualmente)"
+        - "embarrassed (avergonzado, not embarazada)"
+        - "exit (salida, not éxito)"
+      word_order:
+        - "Adjective placement"
+        - "Question formation"
+      cultural_pragmatics:
+        - "English directness may seem abrupt"
+        - "Smaller personal space in conversation"
+
+  # Chinese speakers learning other languages
+  zh:
+    en:
+      grammar:
+        - "Article omission (a, an, the — Chinese has none)"
+        - "Plural marker omission"
+        - "Verb tense errors — Chinese uses context, not conjugation"
+        - "Preposition confusion"
+        - "Subject-verb agreement"
+      pronunciation:
+        - "Consonant clusters difficult"
+        - "Final consonants often dropped"
+        - "/r/ and /l/ distinction"
+        - "th sounds"
+      false_cognates: []
+      word_order:
+        - "Time expression placement"
+        - "Relative clause structure"
+      cultural_pragmatics:
+        - "Indirect communication preference"
+        - "Face-saving importance"
+
+  # Japanese speakers learning other languages
+  ja:
+    en:
+      grammar:
+        - "Article omission (Japanese has none)"
+        - "Plural marker omission"
+        - "Subject omission (Japanese allows, English doesn't)"
+        - "Relative pronoun confusion"
+        - "Preposition errors"
+      pronunciation:
+        - "/r/ and /l/ distinction"
+        - "Consonant clusters"
+        - "th sounds"
+        - "Vowel insertion between consonants"
+        - "/v/ pronounced as /b/"
+      false_cognates:
+        - "Wasei-eigo confusion"
+      word_order:
+        - "SOV to SVO adjustment"
+        - "Adjective/adverb placement"
+      cultural_pragmatics:
+        - "Indirect communication preference"
+        - "Hesitation before answering (not confusion)"
+
+  # French speakers learning other languages
+  fr:
+    en:
+      grammar:
+        - "Gender assignment to nouns (English has none)"
+        - "Adjective placement"
+        - "Present perfect vs simple past confusion"
+        - "False friends from shared vocabulary"
+      pronunciation:
+        - "th sounds (/θ/ and /ð/)"
+        - "h aspiration (often silent in French)"
+        - "Stress patterns (French is syllable-timed)"
+      false_cognates:
+        - "actually (en fait, not actuellement)"
+        - "eventually (finalement, not éventuellement)"
+        - "library (bibliothèque, not librairie)"
+      word_order:
+        - "Adjective placement"
+        - "Adverb placement"
+      cultural_pragmatics:
+        - "English may seem overly casual"
+
+  # German speakers learning other languages
+  de:
+    en:
+      grammar:
+        - "Verb position — German V2 rule doesn't apply"
+        - "Present perfect overuse"
+        - "Article/determiner usage differences"
+      pronunciation:
+        - "w pronounced as /v/"
+        - "th sounds"
+        - "Final consonant devoicing carried over"
+      false_cognates:
+        - "become (werden, not bekommen)"
+        - "gift (Geschenk, not Gift)"
+        - "chef (Küchenchef, not Chef meaning boss)"
+      word_order:
+        - "Verb position in main vs subordinate clauses"
+      cultural_pragmatics:
+        - "German directness may need softening"
+
+# Default fallback for unsupported pairs
+default:
+  grammar:
+    - "General grammar patterns may differ from native language"
+  pronunciation:
+    - "Sound inventory differs between languages"
+  false_cognates: []
+  word_order:
+    - "Sentence structure may differ significantly"
+  cultural_pragmatics:
+    - "Politeness conventions vary across cultures"
