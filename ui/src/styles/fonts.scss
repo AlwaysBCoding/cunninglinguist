@@ -1,0 +1,57 @@
+// Lato
+// =====================
+@font-face {
+  font-family: 'Lato';
+  font-weight: 100;
+  src: local('Lato'), url("../fonts/Lato-Thin.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-weight: 300;
+  src: local('Lato'), url("../fonts/Lato-Light.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-weight: 400;
+  src: local('Lato'), url("../fonts/Lato-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-weight: 700;
+  src: local('Lato'), url("../fonts/Lato-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-weight: 900;
+  src: local('Lato'), url("../fonts/Lato-Black.ttf") format('truetype');
+}
+
+// Ubuntu
+// =====================
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 300;
+  src: local("Ubuntu"), url("../fonts/Ubuntu-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 400;
+  src: local("Ubuntu"), url("../fonts/Ubuntu-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 500;
+  src: local("Ubuntu"), url("../fonts/Ubuntu-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 700;
+  src: local("Ubuntu"), url("../fonts/Ubuntu-Bold.ttf") format("truetype");
+}

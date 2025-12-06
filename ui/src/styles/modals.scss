@@ -1,0 +1,71 @@
+// SHARED
+// =====================
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    width: 500px;
+    background-color: $cool-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-title-container {
+    padding-left: 18px;
+    padding-right: 18px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid $black;
+
+    .modal-title {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    .modal-close {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .modal-body {
+    padding-left: 18px;
+    padding-right: 18px;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .modal-actions {
+    padding-left: 18px;
+    padding-right: 18px;
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    div:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+}
+
+// INDIVIDUAL
+// =====================

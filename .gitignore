@@ -1,0 +1,23 @@
+# GLOBAL
+# =====================
+**/.vscode/
+**/*.tfstate
+**/*.DS_Store
+**/node_modules/
+**/dist/
+**/build/
+**/.bundle
+
+# UI
+# =====================
+ui/.pnp
+ui/.pnp.js
+ui/coverage
+ui/.env.local
+ui/.env.development.local
+ui/.env.test.local
+ui/.env.production.local
+ui/localizationMap.json
+ui/npm-debug.log*
+ui/yarn-debug.log*
+ui/yarn-error.log*
