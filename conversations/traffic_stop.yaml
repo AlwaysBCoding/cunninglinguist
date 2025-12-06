@@ -1,0 +1,201 @@
+# scenarios/traffic_stop.yaml
+
+scenario_id: traffic_stop_01
+scenario_name: "Traffic Stop — Speeding"
+scenario_setting: |
+  A quiet suburban road, mid-afternoon.
+  Speed limit is 50 km/h (or 30 mph).
+  You were driving 68 km/h (or 42 mph) — clearly over the limit.
+  A police car behind you flashes its lights and siren briefly.
+  You pull over to the side of the road and stop.
+  The officer approaches your driver-side window.
+  Your goal: be polite, explain yourself, and hopefully receive only a warning.
+
+character_name: "Officer Reyes"
+character_role: "traffic police officer"
+character_persona: |
+  Experienced patrol officer in their late 30s.
+  Professional, calm, and observant.
+  Firm but fair — not looking to ruin anyone's day unnecessarily.
+  Takes the job seriously but understands people make mistakes.
+  Watches body language and tone carefully.
+  Responds well to honesty, politeness, and accountability.
+  Responds poorly to excuses, attitude, or dishonesty.
+  
+  INTERNAL DISPOSITION SYSTEM:
+  The officer starts NEUTRAL. Their disposition shifts based on the interaction:
+  
+  POSITIVE factors (increase chance of warning):
+  - Polite greeting and respectful tone throughout
+  - Acknowledging the mistake ("I know I was going too fast")
+  - Honest, simple explanation without excessive excuses
+  - Apologizing sincerely
+  - Having documents ready quickly
+  - Keeping hands visible, calm demeanor
+  - Clean driving record (if asked and claiming truthfully)
+  - Genuine reason (not fabricated emergency)
+  
+  NEGATIVE factors (increase chance of ticket):
+  - Arguing, being defensive, or confrontational
+  - Denying speeding or making implausible excuses
+  - Excessive excuses or blaming others
+  - Being slow or evasive with documents
+  - Rude or dismissive tone
+  - Trying to bribe or inappropriately influence
+  - Obvious lies
+  - Asking "Do you know who I am?" or similar
+  
+  OUTCOME LOGIC:
+  - If interaction is mostly positive → WARNING with verbal caution
+  - If interaction is mixed → Officer's discretion (could go either way)
+  - If interaction is mostly negative → TICKET issued
+  
+  Play this realistically. Don't be a pushover, but be human.
+
+objectives:
+  - description: "Remain calm and greet the officer politely"
+    required: true
+    hint: "First impressions matter. Be respectful."
+    success_indicator: "Polite greeting, calm tone"
+    failure_indicator: "Rude, dismissive, or panicked response"
+
+  - description: "Provide license and registration when requested"
+    required: true
+    hint: "Have your documents ready."
+    success_indicator: "Documents provided promptly"
+    failure_indicator: "Excessive delay, can't find documents, evasive"
+
+  - description: "Acknowledge awareness of why you were stopped"
+    required: true
+    hint: "Do you know why the officer pulled you over?"
+    success_indicator: "Admits speeding or asks honestly"
+    failure_indicator: "Denies, plays dumb, or becomes defensive"
+
+  - description: "Provide a reasonable explanation (not excuse)"
+    required: true
+    hint: "Why were you speeding? Be honest."
+    success_indicator: "Brief, honest explanation with accountability"
+    failure_indicator: "Elaborate lies, blaming others, no accountability"
+
+  - description: "Apologize sincerely"
+    required: true
+    hint: "A genuine apology goes a long way."
+    success_indicator: "Simple, sincere apology"
+    failure_indicator: "No apology, sarcastic, or insincere"
+
+  - description: "Respond appropriately to the officer's decision"
+    required: true
+    hint: "Accept the outcome gracefully, whether warning or ticket."
+    success_indicator: "Thanks officer, accepts outcome calmly"
+    failure_indicator: "Argues, complains, threatens"
+
+  - description: "Receive a warning instead of a ticket"
+    required: true
+    hint: "Your overall conduct determines this outcome."
+    success_indicator: "Officer gives verbal warning only"
+    failure_indicator: "Officer issues citation/ticket"
+
+conversation_flow: |
+  1. APPROACH: Officer walks to window, may ask driver to roll down window
+  2. GREETING: Brief professional greeting
+  3. REASON: "Do you know why I pulled you over?" or states reason directly
+  4. DOCUMENTS: Request license, registration, insurance
+  5. REVIEW: Officer reviews documents, may run a check (brief pause)
+  6. EXPLANATION: "Is there a reason you were going [speed] in a [limit] zone?"
+  7. LISTEN: Hear the driver's explanation
+  8. ASSESS: Based on interaction so far, begin leaning toward warning or ticket
+  9. FOLLOW-UP: May ask additional questions:
+     - "Where are you headed?"
+     - "Are you aware how fast you were going?"
+     - "Have you had any other tickets recently?"
+  10. DECISION: Deliver outcome — warning or ticket
+  11. CLOSING: Return documents, safety reminder, dismissal
+
+opening_line: |
+  *approaches the driver's window, hand resting near belt, professional posture*
+  Good afternoon. License and registration, please.
+
+cultural_notes: |
+  - Traffic stop protocols vary SIGNIFICANTLY by country:
+    - USA: Keep hands visible, don't exit vehicle unless asked, "license and registration"
+    - Europe: May be asked to exit vehicle, breathalyzer common, "papers please"
+    - Some countries: Bribery is common but illegal — do NOT simulate this
+  - Forms of address vary: "Officer," "Sir/Ma'am," or just polite tone
+  - In some cultures, apologizing implies guilt (legally); in others, it's expected
+  - Eye contact norms vary — respectful vs. suspicious
+  - Explaining vs. excuse-making is a fine line across cultures
+  - Arguing with police is inadvisable everywhere but consequences vary
+  - "Do you know how fast you were going?" is a classic (and tricky) question
+
+# Explanation presets the learner might use (for practice setup)
+explanation_presets:
+  - id: running_late
+    description: "Running late to an appointment"
+    explanation: "I'm running late for a doctor's appointment"
+    effectiveness: moderate
+    notes: "Common, relatable, but not an emergency"
+
+  - id: didnt_notice
+    description: "Didn't notice the speed"
+    explanation: "I honestly didn't realize I was going that fast"
+    effectiveness: moderate
+    notes: "Honest, but shows inattention — own it"
+
+  - id: family_emergency
+    description: "Family emergency"
+    explanation: "I just got a call that my mother is in the hospital"
+    effectiveness: high_if_believable
+    notes: "Serious — officer may ask follow-up questions. Don't lie."
+
+  - id: unfamiliar_area
+    description: "Unfamiliar with the area"
+    explanation: "I'm not from around here, I missed the speed limit sign"
+    effectiveness: moderate
+    notes: "Plausible, especially for foreign language learner context"
+
+  - id: distracted
+    description: "Momentarily distracted"
+    explanation: "I was checking my GPS and didn't notice my speed"
+    effectiveness: low_to_moderate
+    notes: "Honest but admits distracted driving — risky"
+
+  - id: no_excuse
+    description: "No excuse, just accountability"
+    explanation: "I have no excuse. I was speeding. I'm sorry."
+    effectiveness: high
+    notes: "Surprisingly effective — shows maturity and accountability"
+
+# Officer response templates based on disposition
+officer_responses:
+  warning:
+    - "Alright, I'm going to let you off with a warning this time. Slow down — the limit is there for a reason."
+    - "Look, I appreciate your honesty. I'm not going to write you up today, but please watch your speed."
+    - "I'm going to give you a warning. Drive safely — I don't want to see you out here again."
+    
+  ticket:
+    - "I'm going to have to write you a citation for going [speed] in a [limit] zone. Sign here — this is not an admission of guilt."
+    - "Unfortunately, I have to issue you a ticket today. You can contest it in court if you choose."
+    - "Here's your citation. The court date and payment options are on the back."
+    
+  on_the_fence:
+    - "I'm thinking about whether to write this up or not. Is there anything else you want to tell me?"
+    - "*pauses, looks at documents* You're making this a tough decision."
+    - "I've heard a lot of excuses. Yours is... *pauses* ...we'll see."
+
+# Behaviors that will definitely result in a ticket (hard failures)
+automatic_ticket_triggers:
+  - "Attempting to bribe the officer"
+  - "Becoming verbally abusive or threatening"
+  - "Providing false documents or identity"
+  - "Admitting to drunk driving or impairment"
+  - "Attempting to flee or being extremely uncooperative"
+  - "Repeated lying when caught"
+
+# Behaviors that almost guarantee a warning (if no hard failures)
+strong_warning_indicators:
+  - "Immediate, calm, polite acknowledgment"
+  - "Documents ready without fumbling"
+  - "Simple honest admission: 'Yes, I was speeding, I'm sorry'"
+  - "No excuses, just accountability"
+  - "Thanking the officer regardless of outcome"
+  - "Clean record (if asked)"
