@@ -350,3 +350,51 @@ export const evaluateLevelObjectives = async (
 
   return newlyCompleted;
 }
+
+/**
+ * Transcribes audio using OpenAI Whisper API
+ * 
+ * @param audioBlob - The audio blob to transcribe
+ * @param language - The language code (ISO 639-1) for the audio, e.g., "en", "es", "zh"
+ * @returns Promise that resolves to the transcribed text
+ */
+export const transcribeAudio = async (
+  audioBlob: Blob,
+  language: string
+): Promise<string> => {
+  try {
+    // Determine file extension based on blob type
+    let extension = 'webm';
+    if (audioBlob.type.includes('mp4')) {
+      extension = 'mp4';
+    } else if (audioBlob.type.includes('mpeg')) {
+      extension = 'mp3';
+    } else if (audioBlob.type.includes('wav')) {
+      extension = 'wav';
+    }
+    
+    const formData = new FormData();
+    formData.append('file', audioBlob, `audio.${extension}`);
+    formData.append('model', 'whisper-1');
+    formData.append('language', language);
+
+    const response = await fetch("https://api.openai.com/v1/audio/transcriptions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(`Transcription failed: ${response.status} ${errorData.error?.message || response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.text || "";
+  } catch (error) {
+    console.error("Error transcribing audio:", error);
+    throw error;
+  }
+}
